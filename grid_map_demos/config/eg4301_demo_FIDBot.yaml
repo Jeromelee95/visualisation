@@ -1,0 +1,63 @@
+grid_map_topic: /grid_map_eg4301_demo_FIDBot/grid_map
+
+grid_map_visualizations:
+
+  - name: elevation_points
+    type: point_cloud
+    params:
+     layer: elevation
+     
+  - name: map_region
+    type: map_region
+    params:
+     color: 3289650
+     line_width: 0.003
+    
+  - name: elevation_grid
+    type: occupancy_grid
+    params:
+     layer: elevation
+     data_min: 0.08
+     data_max: -0.16
+     
+     
+  - name: surface_normals
+    type: vectors
+    params:
+     layer_prefix: normal_
+     position_layer: elevation
+     scale: 0.06
+     line_width: 0.005
+     color: 15600153 # red
+
+  - name: elevation_cells1 #Protrusion fail
+    type: grid_cells
+    params:
+     layer: elevation
+     lower_threshold: 0.10000001 #upper limit
+     upper_threshold: 90 
+     #colour: red
+
+  - name: elevation_cells2 #Depression fail
+    type: grid_cells
+    params:
+     layer: elevation
+     lower_threshold: -90
+     upper_threshold: -0.1000001 #lower limit
+     #colour: red
+
+  - name: elevation_cells3 #areas that pass
+    type: grid_cells
+    params:
+     layer: elevation
+     lower_threshold: -0.1 #upper limit
+     upper_threshold: 0.1 
+     #colour: green
+
+  - name: elevation_cells4 #areas that pass
+    type: grid_cells
+    params:
+     layer: elevation_arrow
+     lower_threshold: -90 #upper limit
+     upper_threshold: 90 
+     #colour: cyan

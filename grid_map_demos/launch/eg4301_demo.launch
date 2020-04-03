@@ -1,0 +1,16 @@
+<launch>
+  <!-- Launch the grid map tutorial demo node -->
+  <node pkg="grid_map_demos" type="eg4301_demo" name="grid_map_eg4301_demo" output="screen" />
+
+  <!-- Launch the grid map visualizer -->
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+    <rosparam command="load" file="$(find grid_map_demos)/config/eg4301_demo.yaml" />
+  </node>
+
+  <!-- Map server -->
+  <arg name="map_file" default="$(find ipa_room_segmentation)/common/files/project_maps/bigger_map.yaml"/>
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/> 
+
+  <!-- Launch RViz with the demo configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find grid_map_demos)/rviz/grid_map_eg4301_demo1.rviz" />
+</launch>
